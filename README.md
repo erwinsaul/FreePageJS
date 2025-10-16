@@ -1,6 +1,6 @@
 # FreePage.js
 
-Una librería minimalista de navegación en pantalla completa, inspirada en FullPage.js pero completamente gratuita y sin dependencias.
+Una librería de navegación en pantalla completa.
 
 ## 🚀 Características
 
@@ -290,10 +290,5 @@ Para agregar características o reportar bugs:
 ```
 
 ## 🎓 Créditos
-
-FreePage.js - Una alternativa libre y minimalista a FullPage.js
-
----
-
+**Author**: ErwinSaul
 **Versión**: 1.0.0  
-**Compatibilidad**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
