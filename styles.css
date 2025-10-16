@@ -1,0 +1,494 @@
+/* ===== RESET Y CONFIGURACIÓN BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow: hidden;
+    overflow-x: hidden;
+    background: #FFFFFF;
+}
+
+/* ===== MENÚ SUPERIOR COMPLETAMENTE TRANSPARENTE (Corrección: sin fondo) ===== */
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent; /* Corrección: completamente transparente */
+    backdrop-filter: none;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    transition: all 0.3s ease;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #FFFFFF; /* Corrección: blanco por defecto con sombra */
+    padding: 10px 20px;
+    margin: 0 8px;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    font-size: clamp(14px, 1.8vw, 18px); /* Corrección: escalable */
+    position: relative;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6); /* Corrección: legibilidad */
+    font-weight: 500;
+}
+
+.menu a:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 12px rgba(0, 0, 0, 0.9), 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* Corrección: Indicador de sección activa más visible */
+.menu a.active {
+    font-weight: bold;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 8px rgba(0, 0, 0, 0.9);
+}
+
+.menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+#fullscreen-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ===== SECCIONES (Corrección: padding mejorado) ===== */
+.section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 800ms ease-in-out;
+    transform: translateY(100vh);
+    padding-bottom: 80px;
+    padding-top: 70px;
+}
+
+.section.active {
+    transform: translateY(0);
+}
+
+/* Corrección: Animaciones de giro cíclico */
+.rotating-right {
+    animation: rotateRight 800ms ease-in-out;
+}
+
+.rotating-left {
+    animation: rotateLeft 800ms ease-in-out;
+}
+
+@keyframes rotateRight {
+    from { transform: translateY(0) rotate(0deg); }
+    to { transform: translateY(0) rotate(360deg); }
+}
+
+@keyframes rotateLeft {
+    from { transform: translateY(0) rotate(0deg); }
+    to { transform: translateY(0) rotate(-360deg); }
+}
+
+/* Animaciones para horizontal */
+.rotating-horizontal-right {
+    animation: rotateHorizontalRight 800ms ease-in-out;
+}
+
+.rotating-horizontal-left {
+    animation: rotateHorizontalLeft 800ms ease-in-out;
+}
+
+@keyframes rotateHorizontalRight {
+    from { transform: translateX(0) rotate(0deg); }
+    to { transform: translateX(0) rotate(360deg); }
+}
+
+@keyframes rotateHorizontalLeft {
+    from { transform: translateX(0) rotate(0deg); }
+    to { transform: translateX(0) rotate(-360deg); }
+}
+
+/* ===== FULL CENTER (Corrección: centrado perfecto) ===== */
+.section.full-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section.full-center .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    max-width: 900px;
+    width: 90%;
+    height: 100%;
+}
+
+/* Corrección: Tamaños de letra más grandes y escalables */
+.section.full-center h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem); /* Corrección: más grande */
+    margin-bottom: 25px;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.section.full-center p {
+    font-size: clamp(1.2rem, 3vw, 2rem); /* Corrección: más grande */
+    margin-bottom: 18px;
+    line-height: 1.6;
+}
+
+/* ===== SPLIT LEFT/RIGHT (Corrección: centrado y responsive) ===== */
+.section.split-left-right {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.section.split-left-right .left,
+.section.split-left-right .right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+}
+
+.section.split-left-right h2 {
+    font-size: clamp(2rem, 5vw, 4rem); /* Corrección: más grande */
+    margin-bottom: 20px;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.section.split-left-right p {
+    font-size: clamp(1.1rem, 2.5vw, 1.8rem); /* Corrección: más grande */
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+/* Corrección: Split vertical en pantallas portrait (height > width) */
+@media (orientation: portrait), (max-aspect-ratio: 1/1) {
+    .section.split-left-right {
+        flex-direction: column;
+    }
+    
+    .section.split-left-right .left,
+    .section.split-left-right .right {
+        width: 100%;
+        height: 50%;
+        padding: 30px 20px;
+    }
+}
+
+/* ===== HORIZONTAL SLIDES (Corrección: centrado perfecto) ===== */
+.section.horizontal-slides {
+    display: block;
+    overflow: hidden;
+}
+
+.section.horizontal-slides .slides-wrapper {
+    display: flex;
+    height: 100%;
+    transition: transform 800ms ease-in-out;
+}
+
+.section.horizontal-slides .slide {
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+}
+
+.section.horizontal-slides h2 {
+    font-size: clamp(2.2rem, 5vw, 4.5rem); /* Corrección: más grande */
+    margin-bottom: 25px;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.section.horizontal-slides p {
+    font-size: clamp(1.1rem, 3vw, 2rem); /* Corrección: más grande */
+    line-height: 1.6;
+    margin: 8px 0;
+    max-width: 800px;
+}
+
+/* ===== VIDEO DE FONDO ===== */
+.section[data-video] {
+    position: relative;
+}
+
+.section[data-video]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.section[data-video] iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.section[data-video] .content {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== TEXTO CLARO/OSCURO (Corrección: contraste mejorado) ===== */
+.light-text,
+.light-text h1,
+.light-text h2,
+.light-text p {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark-text,
+.dark-text h1,
+.dark-text h2,
+.dark-text p {
+    color: #000000 !important;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+/* ===== FLECHAS DE NAVEGACIÓN (Corrección: tamaño reducido) ===== */
+.arrow {
+    position: fixed;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    z-index: 900;
+    color: #FFFFFF;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+}
+
+.arrow:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+.arrow svg {
+    width: 100%;
+    height: 100%;
+}
+
+.arrow-up {
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.arrow-down {
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.arrow-left {
+    left: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+}
+
+.arrow-right {
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+}
+
+.arrow.hidden {
+    display: none;
+}
+
+/* ===== RESPONSIVE MEJORADO ===== */
+
+/* Pantallas grandes (más de 1200px) */
+@media (min-width: 1200px) {
+    .section.full-center h1 {
+        font-size: clamp(3rem, 6vw, 6rem);
+    }
+    
+    .section.full-center p {
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+    }
+    
+    .section.split-left-right h2,
+    .section.horizontal-slides h2 {
+        font-size: clamp(2.5rem, 5vw, 5rem);
+    }
+    
+    .section.split-left-right p,
+    .section.horizontal-slides p {
+        font-size: clamp(1.3rem, 2.5vw, 2rem);
+    }
+    
+    .arrow {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Tablets (768px - 1199px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+    .menu a {
+        font-size: clamp(13px, 1.5vw, 16px);
+        padding: 8px 15px;
+    }
+    
+    .arrow {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* Tablets y móviles pequeños */
+@media (max-width: 768px) {
+    .menu {
+        padding: 15px 0;
+        flex-wrap: wrap;
+    }
+    
+    .menu a {
+        padding: 8px 12px;
+        margin: 3px;
+        font-size: clamp(12px, 2vw, 15px);
+    }
+    
+    .menu a.active::after {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .arrow {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .arrow-up {
+        top: 75px;
+    }
+    
+    .arrow-down {
+        bottom: 30px;
+    }
+    
+    .section {
+        padding-bottom: 85px;
+        padding-top: 75px;
+    }
+    
+    .section.horizontal-slides .slide,
+    .section.split-left-right .left,
+    .section.split-left-right .right {
+        padding: 25px 20px;
+    }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 480px) {
+    .menu {
+        padding: 12px 0;
+    }
+    
+    .menu a {
+        padding: 6px 10px;
+        font-size: clamp(11px, 2.5vw, 14px);
+        margin: 2px 1px;
+    }
+    
+    .arrow {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .arrow-down {
+        bottom: 25px;
+    }
+    
+    .section {
+        padding-bottom: 95px;
+        padding-top: 70px;
+    }
+    
+    .section.full-center .content,
+    .section.horizontal-slides .slide {
+        padding: 20px 15px;
+    }
+}
+
+/* Corrección: Landscape en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+    .section {
+        padding-top: 60px;
+        padding-bottom: 70px;
+    }
+    
+    .section.full-center h1 {
+        font-size: clamp(1.8rem, 5vw, 3rem);
+        margin-bottom: 15px;
+    }
+    
+    .section.full-center p {
+        font-size: clamp(0.9rem, 2vw, 1.3rem);
+        margin-bottom: 10px;
+    }
+    
+    .arrow-up {
+        top: 70px;
+    }
+    
+    .arrow-down {
+        bottom: 20px;
+    }
+}

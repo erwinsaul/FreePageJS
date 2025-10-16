@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreePage.js Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Menú superior completamente transparente -->
+    <nav class="menu" id="main-menu">
+        <a href="#seccion1" data-index="0" class="active">Inicio</a>
+        <a href="#seccion2" data-index="1">Sobre</a>
+        <a href="#seccion3" data-index="2">Galería</a>
+        <a href="#seccion4" data-index="3">Video</a>
+    </nav>
+
+    <!-- Contenedor principal de secciones -->
+    <div id="fullscreen-container">
+        
+        <!-- Sección 1: Full-center con texto puro (sin imágenes) -->
+        <div class="section full-center" id="seccion1" data-background-color="#87CEEB">
+            <div class="content">
+                <h1>Bienvenidos a FreePage.js</h1>
+                <p>Una librería minimalista de navegación</p>
+                <p>en pantalla completa con colores vibrantes</p>
+                <p>y animaciones fluidas</p>
+            </div>
+        </div>
+
+        <!-- Sección 2: Split left/right (se vuelve vertical en portrait) -->
+        <div class="section split-left-right" id="seccion2" data-background-color="#9370DB">
+            <div class="left">
+                <h2>Navegación</h2>
+                <p>Intuitiva y</p>
+                <p>fluida con</p>
+                <p>transiciones</p>
+                <p>suaves y</p>
+                <p>elegantes</p>
+            </div>
+            <div class="right">
+                <h2>Diseño</h2>
+                <p>Responsive y</p>
+                <p>adaptable a</p>
+                <p>todos los</p>
+                <p>dispositivos</p>
+                <p>modernos</p>
+            </div>
+        </div>
+
+        <!-- Sección 3: Horizontal slides (3 subsecciones) -->
+        <div class="section horizontal-slides" id="seccion3" data-background-color="#FF69B4">
+            <div class="slide">
+                <h2>Slide 1</h2>
+                <p>Colores Vibrantes</p>
+                <p>Los colores cambian</p>
+                <p>aleatoriamente en</p>
+                <p>cada transición</p>
+                <p>para una experiencia</p>
+                <p>visual dinámica</p>
+            </div>
+            <div class="slide">
+                <h2>Slide 2</h2>
+                <p>Navegación Cíclica</p>
+                <p>Al llegar al final</p>
+                <p>vuelves al principio</p>
+                <p>con animación de giro</p>
+                <p>Todo es fluido</p>
+                <p>e infinito</p>
+            </div>
+            <div class="slide">
+                <h2>Slide 3</h2>
+                <p>Sin Dependencias</p>
+                <p>HTML, CSS y</p>
+                <p>JavaScript puros</p>
+                <p>Sin frameworks ni</p>
+                <p>librerías externas</p>
+                <p>100% nativo</p>
+            </div>
+        </div>
+
+        <!-- Sección 4: Video de fondo con overlay -->
+        <div class="section full-center" id="seccion4" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+            <div class="content">
+                <h1>Video de Fondo</h1>
+                <p>Soporte para videos de YouTube</p>
+                <p>con overlay oscuro automático</p>
+                <p>y texto siempre legible</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Flechas de navegación vertical -->
+    <div class="arrow arrow-up" id="arrow-up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </div>
+    <div class="arrow arrow-down" id="arrow-down">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+    </div>
+
+    <!-- Flechas de navegación horizontal -->
+    <div class="arrow arrow-left" id="arrow-left">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+    </div>
+    <div class="arrow arrow-right" id="arrow-right">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+    </div>
+
+    <script src="FreePage.js"></script>
+</body>
+</html>
