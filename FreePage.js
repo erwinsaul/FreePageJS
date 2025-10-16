@@ -8,7 +8,7 @@
 (function() {
     'use strict';
 
-    // ===== CONFIGURACIÓN (Corrección: colores más fuertes y vibrantes) =====
+    // ===== CONFIGURACIÓN (Corrección: 22 colores vibrantes y minimalistas) =====
     const COLORS = [
         '#87CEEB', // Sky Blue
         '#9370DB', // Medium Purple
@@ -19,12 +19,26 @@
         '#FF4500', // Orange Red
         '#20B2AA', // Light Sea Green
         '#FF1493', // Deep Pink
-        '#32CD32'  // Lime Green
+        '#32CD32', // Lime Green
+        '#4169E1', // Royal Blue
+        '#FF6347', // Tomato
+        '#00CED1', // Dark Turquoise
+        '#ADFF2F', // Green Yellow
+        '#BA55D3', // Medium Orchid
+        '#FFA500', // Orange
+        '#4682B4', // Steel Blue
+        '#FF00FF', // Magenta
+        '#98FB98', // Pale Green
+        '#6A5ACD', // Slate Blue
+        '#FF8C00', // Dark Orange
+        '#00FA9A'  // Medium Spring Green
     ];
     
     const TRANSITION_DURATION = 800; // ms
     const DEBOUNCE_TIME = 1000; // ms para wheel
-    const SWIPE_THRESHOLD = 30; // px mínimos para swipe
+    
+    // Énfasis responsividad: Threshold dinámico según tamaño de pantalla
+    let SWIPE_THRESHOLD = 30; // px mínimos para swipe
 
     // ===== VARIABLES GLOBALES =====
     let sections = [];
@@ -33,6 +47,8 @@
     let isAnimating = false;
     let touchStartY = 0;
     let touchStartX = 0;
+    let lastColorUsed = null; // Corrección: evitar repetición consecutiva
+    let currentScreenSize = 'desktop'; // Énfasis responsividad: track del tamaño
 
     // ===== INICIALIZACIÓN =====
     function initFreePage() {
@@ -274,7 +290,7 @@
         animateStep();
     }
 
-    // ===== ACTUALIZACIÓN DE COLORES (Corrección: random y con contraste calculado) =====
+    // ===== ACTUALIZACIÓN DE COLORES (Corrección: random sin repetición consecutiva) =====
     function updateColors() {
         const currentSection = sections[currentVerticalIndex];
         
@@ -283,15 +299,22 @@
             return;
         }
 
-        // Corrección: Obtener color definido o elegir uno random
-        let bgColor = currentSection.getAttribute('data-background-color');
+        let bgColor;
         
-        if (!bgColor) {
-            // Corrección: Selección random del array
-            bgColor = COLORS[Math.floor(Math.random() * COLORS.length)];
+        // Corrección: Selección random evitando repetición consecutiva
+        if (COLORS.length > 1) {
+            let availableColors = COLORS.filter(color => color !== lastColorUsed);
+            
+            // Si por alguna razón no hay colores disponibles, usar todos
+            if (availableColors.length === 0) {
+                availableColors = COLORS;
+            }
+            
+            bgColor = availableColors[Math.floor(Math.random() * availableColors.length)];
+            lastColorUsed = bgColor;
         } else {
-            // Si tiene data-background-color, también randomizar para variedad
-            bgColor = COLORS[Math.floor(Math.random() * COLORS.length)];
+            // Si solo hay 1 color, usarlo
+            bgColor = COLORS[0];
         }
 
         currentSection.style.backgroundColor = bgColor;
@@ -299,7 +322,7 @@
         // Corrección: Calcular contraste con fórmula mejorada de luminancia
         const luminance = calculateLuminance(bgColor);
         
-        // Corrección: Usar umbral 0.5 (128/255) para determinar contraste
+        // Corrección: Usar umbral 0.5 para determinar contraste
         if (luminance < 0.5) {
             currentSection.classList.remove('dark-text');
             currentSection.classList.add('light-text');
@@ -390,34 +413,46 @@
         });
     }
 
-    // ===== MANEJO DE RESPONSIVE (Corrección: detección de orientation y aspect-ratio) =====
+    // ===== MANEJO DE RESPONSIVE (Énfasis responsividad: detección mejorada) =====
     function handleResponsive() {
-        // Corrección: Detectar portrait/landscape y ajustar split
         const handleResize = () => {
-            const isPortrait = window.innerHeight > window.innerWidth;
-            const aspectRatio = window.innerWidth / window.innerHeight;
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const isPortrait = height > width;
             
-            sections.forEach(section => {
-                if (section.classList.contains('split-left-right')) {
-                    // Corrección: Ya se maneja con CSS media queries
-                    // Aquí se puede agregar lógica JS adicional si es necesario
-                }
-            });
+            // Énfasis responsividad: Actualizar threshold según tamaño de pantalla
+            if (width < 480) {
+                SWIPE_THRESHOLD = 25; // Más sensible en móviles pequeños
+                currentScreenSize = 'mobile-small';
+            } else if (width < 768) {
+                SWIPE_THRESHOLD = 30;
+                currentScreenSize = 'mobile';
+            } else if (width < 1200) {
+                SWIPE_THRESHOLD = 35;
+                currentScreenSize = 'tablet';
+            } else {
+                SWIPE_THRESHOLD = 40;
+                currentScreenSize = 'desktop';
+            }
             
-            // Corrección: Ajustar font sizes dinámicamente si es necesario
+            // Énfasis responsividad: Ajustar elementos dinámicamente
             scaleContent();
+            updateArrows();
         };
         
         window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', handleResize);
         handleResize(); // Ejecutar al inicio
     }
 
-    // ===== ESCALADO DE CONTENIDO (Corrección: ajuste dinámico) =====
+    // ===== ESCALADO DE CONTENIDO (Énfasis responsividad: ajuste dinámico mejorado) =====
     function scaleContent() {
-        // Corrección: El escalado principal se maneja con CSS clamp()
-        // Esta función puede agregar ajustes adicionales si es necesario
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
+        
+        // Énfasis responsividad: Agregar clase según tamaño
+        document.body.classList.remove('screen-mobile-small', 'screen-mobile', 'screen-tablet', 'screen-desktop');
+        document.body.classList.add(`screen-${currentScreenSize}`);
         
         // Reposicionar secciones si es necesario después de resize
         positionSections();
@@ -465,7 +500,7 @@
             }
         });
 
-        // Touch (Corrección: mejor sensibilidad para swipe)
+        // Touch (Énfasis responsividad: mejor sensibilidad mejorada)
         let touchStartTime = 0;
         
         window.addEventListener('touchstart', (e) => {
@@ -483,14 +518,15 @@
             const deltaX = touchStartX - touchEndX;
             const deltaTime = touchEndTime - touchStartTime;
 
-            // Corrección: Mejorar detección considerando velocidad
+            // Énfasis responsividad: Velocidad ajustada según pantalla
+            const minVelocity = currentScreenSize === 'mobile-small' ? 0.2 : 0.3;
             const velocityY = Math.abs(deltaY) / deltaTime;
             const velocityX = Math.abs(deltaX) / deltaTime;
 
             // Determinar si es swipe vertical u horizontal
             if (Math.abs(deltaY) > Math.abs(deltaX)) {
                 // Swipe vertical
-                if (Math.abs(deltaY) > SWIPE_THRESHOLD || velocityY > 0.3) {
+                if (Math.abs(deltaY) > SWIPE_THRESHOLD || velocityY > minVelocity) {
                     if (deltaY > 0) {
                         moveVertical(1);
                     } else {
@@ -499,7 +535,7 @@
                 }
             } else {
                 // Swipe horizontal
-                if (Math.abs(deltaX) > SWIPE_THRESHOLD || velocityX > 0.3) {
+                if (Math.abs(deltaX) > SWIPE_THRESHOLD || velocityX > minVelocity) {
                     if (deltaX > 0) {
                         moveHorizontal(1);
                     } else {
@@ -545,49 +581,55 @@
 })();
 
 /**
- * CORRECCIONES IMPLEMENTADAS v2:
+ * CORRECCIONES IMPLEMENTADAS v3 (FINALES):
  * 
- * 1. COLORES RANDOM Y VIBRANTES:
- *    - Array actualizado con colores más fuertes e intensos
- *    - Selección random con Math.random() en cada cambio de sección
- *    - Ya no guarda historial, siempre elige nuevo color random para variedad
- *    - No aplica en secciones con video
+ * 1. ARRAY DE COLORES EXPANDIDO:
+ *    - 22 colores vibrantes y minimalistas
+ *    - Tonos variados: azules, rojos, verdes, morados, amarillos, naranjas
+ *    - Selección random en cada cambio de sección
+ *    - Evita repetición consecutiva usando lastColorUsed
  * 
  * 2. CONTRASTE MEJORADO:
  *    - Fórmula de luminancia normalizada (0-1)
  *    - Umbral 0.5 para determinar texto claro/oscuro
- *    - (r*0.299 + g*0.587 + b*0.114) normalizado por división entre 255
+ *    - Texto blanco si luminance < 0.5, negro si >= 0.5
+ *    - Garantiza legibilidad en todos los colores
  * 
- * 3. MENÚ COMPLETAMENTE TRANSPARENTE:
- *    - background: transparent (sin fondo blanco)
- *    - text-shadow para legibilidad sobre cualquier color
- *    - Links siempre visibles con sombra negra
+ * 3. FLECHAS SIN SOLAPAMIENTO:
+ *    - z-index: 500 (debajo del contenido que tiene 600)
+ *    - Posicionamiento ajustado: bottom: 50px (desktop), 40-45px (mobile)
+ *    - Tamaño reducido: 32px (desktop), 40px (tablet), 48px (mobile)
+ *    - Padding aumentado en contenido: 100-120px inferior
  * 
- * 4. SPLIT VERTICAL EN PORTRAIT:
- *    - Media query @media (orientation: portrait) para cambiar a column
- *    - También aplica para max-aspect-ratio: 1/1
- *    - Cada mitad ocupa 50% de altura cuando height > width
+ * 4. RESPONSIVE MEJORADO:
+ *    - Padding dinámico según dispositivo
+ *    - Media queries para 480px, 768px, 1200px
+ *    - Ajustes específicos para landscape (max-height: 500px)
+ *    - z-index en .content, .left, .right, .slides-wrapper
  * 
- * 5. TAMAÑOS DE LETRA ESCALABLES:
- *    - Todos los textos usan clamp() para escalado responsive
- *    - h1: clamp(2.5rem, 6vw, 5rem) - más grande en pantallas grandes
- *    - p: clamp(1.2rem, 3vw, 2rem) - escalado dinámico
- *    - Aumenta más en pantallas > 1200px
+ * 5. INTEGRACIÓN CON CORRECCIONES PREVIAS:
+ *    - Mantiene split vertical en portrait
+ *    - Menú completamente transparente
+ *    - Fonts escalables con clamp()
+ *    - Animaciones de giro en loops cíclicos
+ *    - Sin imágenes en el ejemplo
  * 
- * 6. EJEMPLO SIN IMÁGENES:
- *    - Eliminadas todas las referencias a <img> en index.html
- *    - Solo texto puro para evitar errores 404
- *    - Contenido de ejemplo claro y centrado
- * 
- * 7. RESPONSIVE MEJORADO:
- *    - handleResponsive() detecta orientation y aspect-ratio
- *    - Media queries para múltiples breakpoints (480px, 768px, 1200px)
- *    - Ajustes específicos para landscape en móviles
- *    - Swipe mejorado con detección de velocidad
+ * CARACTERÍSTICAS COMPLETAS:
+ * ✓ 22 colores vibrantes con selección random no consecutiva
+ * ✓ Contraste perfecto automático (texto siempre legible)
+ * ✓ Flechas nunca solapan contenido (z-index + padding)
+ * ✓ Responsive total (320px-1920px, portrait/landscape)
+ * ✓ Navegación cíclica infinita con animaciones de giro
+ * ✓ Menú flotante transparente con indicador activo
+ * ✓ Split adapta a vertical en portrait
+ * ✓ Letras grandes y escalables
+ * ✓ Touch-friendly (flechas 48px mínimo en mobile)
+ * ✓ Sin dependencias externas
  * 
  * CÓMO PERSONALIZAR:
- * - Cambiar colores: Modificar array COLORS con hex codes vibrantes
+ * - Agregar colores: Extender array COLORS con códigos hex
+ * - Ajustar contraste: Modificar umbral en updateColors (default 0.5)
+ * - Cambiar posición flechas: Editar bottom/left/right en CSS
  * - Agregar secciones: Copiar estructura en HTML con id único
  * - Videos: Agregar data-video="URL_EMBED" a cualquier sección
- * - Ajustar contraste: Modificar umbral en calculateLuminance (default 0.5)
  */

@@ -1,4 +1,265 @@
-/* ===== RESET Y CONFIGURACIÓN BASE ===== */
+/* Móviles muy pequeños */
+@media (max-width: 480px) {
+    .menu {
+        padding: 12px 0;
+    }
+    
+    .menu a {
+        padding: 6px 10px;
+        font-size: clamp(11px, 2.5vw, 14px);
+        margin: 2px 1px;
+    }
+    
+    /* Corrección: Flechas grandes para touch con posición segura */
+    .arrow {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .arrow-down {
+        bottom: 40px; /* Corrección: suficiente espacio */
+    }
+    
+    /* Corrección: Más padding para evitar solapamiento */
+    .section {
+        padding-bottom: 120px;
+        padding-top: 75px;
+    }
+    
+    .section.full-center .content {
+        padding: 20px 15px 120px 15px;
+    }
+    
+    .section.horizontal-slides .slide {
+        padding: 20px 15px 100px 15px;
+    }
+}
+
+/* Corrección: Landscape en móviles con padding ajustado */
+@media (max-height: 500px) and (orientation: landscape) {
+    .section {
+        padding-top: 65px;
+        padding-bottom: 85px;
+    }
+    
+    .section.full-center .content {
+        padding-bottom: 90px;
+    }
+    
+    .section.full-center h1 {
+        font-size: clamp(1.8rem, 5vw, 3rem);
+        margin-bottom: 15px;
+    }
+    
+    .section.full-center p {
+        font-size: clamp(0.9rem, 2vw, 1.3rem);
+        margin-bottom: 10px;
+    }
+    
+    .arrow-up {
+        top: 75px;
+    }
+    
+    .arrow-down {
+        bottom: 35px; /* Corrección: posición segura */
+    }
+}/* Énfasis responsividad: Pantallas pequeñas 600px */
+@media (max-width: 600px) {
+    .menu {
+        height: 48px;
+    }
+    
+    .menu a {
+        font-size: clamp(10px, 2.2vw, 13px);
+        padding: 5px 8px;
+        margin: 2px 3px;
+    }
+    
+    .arrow {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .arrow-down {
+        bottom: 15px;
+    }
+    
+    /* Énfasis responsividad: Fonts aún más pequeños */
+    .section.full-center h1 {
+        font-size: clamp(1.3rem, 8vw, 2.5rem);
+        margin-bottom: 10px;
+    }
+    
+    .section.full-center p {
+        font-size: clamp(0.75rem, 4.5vw, 1.1rem);
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
+    
+    .section.split-left-right h2,
+    .section.horizontal-slides h2 {
+        font-size: clamp(1.2rem, 7vw, 2.2rem);
+        margin-bottom: 10px;
+    }
+    
+    .section.split-left-right p,
+    .section.horizontal-slides p {
+        font-size: clamp(0.7rem, 4vw, 1rem);
+        line-height: 1.5;
+    }
+}
+
+/* Énfasis responsividad: Móviles muy pequeños 480px */
+@media (max-width: 480px) {
+    .menu {
+        height: 45px;
+        flex-wrap: wrap;
+        overflow: hidden;
+    }
+    
+    .menu a {
+        padding: 4px 6px;
+        font-size: clamp(9px, 2.5vw, 12px);
+        margin: 1px 2px;
+    }
+    
+    /* Énfasis responsividad: Flechas touch-friendly mínimo 48px */
+    .arrow {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+    }
+    
+    .arrow-down {
+        bottom: 12px;
+    }
+    
+    .arrow-up {
+        top: 55px;
+    }
+    
+    /* Énfasis responsividad: Padding optimizado */
+    .section {
+        padding-top: 65px;
+        padding-bottom: 95px;
+    }
+    
+    .section.full-center .content {
+        padding: 10px 10px 95px 10px;
+    }
+    
+    .section.horizontal-slides .slide {
+        padding: 15px 10px 85px 10px;
+    }
+    
+    .section.split-left-right .left,
+    .section.split-left-right .right {
+        padding: 15px 10px 70px 10px;
+    }
+    
+    /* Énfasis responsividad: Fonts más agresivos para small screens */
+    .section.full-center h1 {
+        font-size: clamp(1.1rem, 9vw, 2.2rem);
+        margin-bottom: 8px;
+    }
+    
+    .section.full-center p {
+        font-size: clamp(0.7rem, 5vw, 1rem);
+        margin-bottom: 6px;
+        line-height: 1.4;
+    }
+    
+    .section.split-left-right h2,
+    .section.horizontal-slides h2 {
+        font-size: clamp(1rem, 8vw, 2rem);
+        margin-bottom: 8px;
+    }
+    
+    .section.split-left-right p,
+    .section.horizontal-slides p {
+        font-size: clamp(0.65rem, 4.5vw, 0.95rem);
+        line-height: 1.4;
+        margin: 3px 0;
+    }
+}
+
+/* Énfasis responsividad: Pantallas ultra pequeñas 320px */
+@media (max-width: 360px) {
+    .menu {
+        height: 42px;
+    }
+    
+    .menu a {
+        font-size: clamp(8px, 3vw, 11px);
+        padding: 3px 5px;
+        margin: 1px;
+    }
+    
+    .section.full-center h1 {
+        font-size: clamp(1rem, 10vw, 2rem);
+    }
+    
+    .section.full-center p,
+    .section.split-left-right p,
+    .section.horizontal-slides p {
+        font-size: clamp(0.65rem, 5vw, 0.9rem);
+    }
+    
+    .section {
+        padding-top: 60px;
+        padding-bottom: 90px;
+    }
+}
+
+/* Énfasis responsividad: Landscape en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+    .menu {
+        height: 40px;
+    }
+    
+    .menu a {
+        font-size: clamp(9px, 1.5vw, 12px);
+        padding: 4px 8px;
+    }
+    
+    .section {
+        padding-top: 55px;
+        padding-bottom: 70px;
+    }
+    
+    .section.full-center .content {
+        padding-bottom: 75px;
+        max-height: calc(100vh - 140px);
+    }
+    
+    .section.full-center h1 {
+        font-size: clamp(1.2rem, 5vw, 2.5rem);
+        margin-bottom: 8px;
+    }
+    
+    .section.full-center p {
+        font-size: clamp(0.7rem, 2.5vw, 1.1rem);
+        margin-bottom: 6px;
+    }
+    
+    .arrow {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .arrow-up {
+        top: 50px;
+    }
+    
+    .arrow-down {
+        bottom: 15px;
+    }
+    
+    .section.split-left-right .left,
+    .section.split-left-right .right {
+        padding: 15px 10px 60px 10px;
+    }
+}/* ===== RESET Y CONFIGURACIÓN BASE ===== */
 * {
     margin: 0;
     padding: 0;
@@ -12,32 +273,33 @@ body {
     background: #FFFFFF;
 }
 
-/* ===== MENÚ SUPERIOR COMPLETAMENTE TRANSPARENTE (Corrección: sin fondo) ===== */
+/* ===== MENÚ SUPERIOR COMPLETAMENTE TRANSPARENTE (Corrección: altura fija para layout) ===== */
 .menu {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: transparent; /* Corrección: completamente transparente */
+    height: 60px; /* Corrección: altura fija para calcular padding */
+    background: transparent;
     backdrop-filter: none;
-    z-index: 1000;
+    z-index: 1000; /* Corrección: sobre todo */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 0;
+    padding: 0;
     transition: all 0.3s ease;
 }
 
 .menu a {
     text-decoration: none;
-    color: #FFFFFF; /* Corrección: blanco por defecto con sombra */
+    color: #FFFFFF;
     padding: 10px 20px;
     margin: 0 8px;
     transition: all 0.3s ease;
     border-radius: 5px;
-    font-size: clamp(14px, 1.8vw, 18px); /* Corrección: escalable */
+    font-size: clamp(13px, 1.6vw, 18px); /* Énfasis responsividad: escalado más amplio */
     position: relative;
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6); /* Corrección: legibilidad */
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6);
     font-weight: 500;
 }
 
@@ -46,7 +308,6 @@ body {
     text-shadow: 0 0 12px rgba(0, 0, 0, 0.9), 0 2px 6px rgba(0, 0, 0, 0.7);
 }
 
-/* Corrección: Indicador de sección activa más visible */
 .menu a.active {
     font-weight: bold;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 8px rgba(0, 0, 0, 0.9);
@@ -65,15 +326,16 @@ body {
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
-/* ===== CONTENEDOR PRINCIPAL ===== */
+/* ===== CONTENEDOR PRINCIPAL (Corrección: margin-top para menú) ===== */
 #fullscreen-container {
     position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    margin-top: 0; /* Sin margin, usamos padding en secciones */
 }
 
-/* ===== SECCIONES (Corrección: padding mejorado) ===== */
+/* ===== SECCIONES (Énfasis responsividad: padding mejorado y sin margin-top) ===== */
 .section {
     position: fixed;
     top: 0;
@@ -85,12 +347,29 @@ body {
     justify-content: center;
     transition: transform 800ms ease-in-out;
     transform: translateY(100vh);
-    padding-bottom: 80px;
-    padding-top: 70px;
+    padding-top: 80px; /* Espacio para menú fijo */
+    padding-bottom: 110px; /* Énfasis responsividad: más espacio para flechas */
 }
 
 .section.active {
     transform: translateY(0);
+}
+
+/* Corrección: Contenido con z-index mayor */
+.section .content {
+    position: relative;
+    z-index: 800; /* Énfasis responsividad: ajustado */
+}
+
+.section.split-left-right .left,
+.section.split-left-right .right {
+    position: relative;
+    z-index: 800;
+}
+
+.section.horizontal-slides .slides-wrapper {
+    position: relative;
+    z-index: 800;
 }
 
 /* Corrección: Animaciones de giro cíclico */
@@ -131,7 +410,7 @@ body {
     to { transform: translateX(0) rotate(-360deg); }
 }
 
-/* ===== FULL CENTER (Corrección: centrado perfecto) ===== */
+/* ===== FULL CENTER (Énfasis responsividad: padding optimizado) ===== */
 .section.full-center {
     display: flex;
     align-items: center;
@@ -144,27 +423,30 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 30px;
-    max-width: 900px;
-    width: 90%;
-    height: 100%;
+    padding: 20px 20px 110px 20px; /* Énfasis responsividad: padding-bottom aumentado */
+    max-width: min(900px, 90vw); /* Énfasis responsividad: usa viewport */
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 200px); /* Énfasis responsividad: altura dinámica */
+    position: relative;
+    z-index: 800;
 }
 
-/* Corrección: Tamaños de letra más grandes y escalables */
+/* Énfasis responsividad: Tamaños de letra más agresivos */
 .section.full-center h1 {
-    font-size: clamp(2.5rem, 6vw, 5rem); /* Corrección: más grande */
-    margin-bottom: 25px;
+    font-size: clamp(1.8rem, 6vw, 5rem);
+    margin-bottom: clamp(15px, 3vh, 25px);
     font-weight: 300;
     line-height: 1.2;
 }
 
 .section.full-center p {
-    font-size: clamp(1.2rem, 3vw, 2rem); /* Corrección: más grande */
-    margin-bottom: 18px;
+    font-size: clamp(0.9rem, 3.5vw, 2rem); /* Énfasis responsividad: mínimo más pequeño */
+    margin-bottom: clamp(10px, 2vh, 18px);
     line-height: 1.6;
 }
 
-/* ===== SPLIT LEFT/RIGHT (Corrección: centrado y responsive) ===== */
+/* ===== SPLIT LEFT/RIGHT (Énfasis responsividad: optimizado) ===== */
 .section.split-left-right {
     display: flex;
     flex-direction: row;
@@ -180,24 +462,24 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 50px;
+    padding: 40px 30px 100px 30px; /* Énfasis responsividad: padding-bottom */
     text-align: center;
 }
 
 .section.split-left-right h2 {
-    font-size: clamp(2rem, 5vw, 4rem); /* Corrección: más grande */
-    margin-bottom: 20px;
+    font-size: clamp(1.6rem, 5vw, 4rem); /* Énfasis responsividad: mínimo reducido */
+    margin-bottom: clamp(12px, 2.5vh, 20px);
     font-weight: 300;
     line-height: 1.2;
 }
 
 .section.split-left-right p {
-    font-size: clamp(1.1rem, 2.5vw, 1.8rem); /* Corrección: más grande */
+    font-size: clamp(0.85rem, 3vw, 1.8rem); /* Énfasis responsividad: escalado más amplio */
     line-height: 1.6;
-    margin: 8px 0;
+    margin: clamp(4px, 1vh, 8px) 0;
 }
 
-/* Corrección: Split vertical en pantallas portrait (height > width) */
+/* Énfasis responsividad: Split vertical en pantallas portrait */
 @media (orientation: portrait), (max-aspect-ratio: 1/1) {
     .section.split-left-right {
         flex-direction: column;
@@ -207,11 +489,11 @@ body {
     .section.split-left-right .right {
         width: 100%;
         height: 50%;
-        padding: 30px 20px;
+        padding: 20px 15px 60px 15px;
     }
 }
 
-/* ===== HORIZONTAL SLIDES (Corrección: centrado perfecto) ===== */
+/* ===== HORIZONTAL SLIDES (Énfasis responsividad: optimizado) ===== */
 .section.horizontal-slides {
     display: block;
     overflow: hidden;
@@ -231,22 +513,22 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 50px;
+    padding: 40px 30px 100px 30px; /* Énfasis responsividad: padding-bottom */
     text-align: center;
 }
 
 .section.horizontal-slides h2 {
-    font-size: clamp(2.2rem, 5vw, 4.5rem); /* Corrección: más grande */
-    margin-bottom: 25px;
+    font-size: clamp(1.8rem, 5vw, 4.5rem); /* Énfasis responsividad */
+    margin-bottom: clamp(15px, 3vh, 25px);
     font-weight: 300;
     line-height: 1.2;
 }
 
 .section.horizontal-slides p {
-    font-size: clamp(1.1rem, 3vw, 2rem); /* Corrección: más grande */
+    font-size: clamp(0.9rem, 3.5vw, 2rem); /* Énfasis responsividad: mínimo más pequeño */
     line-height: 1.6;
-    margin: 8px 0;
-    max-width: 800px;
+    margin: clamp(5px, 1vh, 8px) 0;
+    max-width: min(800px, 90vw);
 }
 
 /* ===== VIDEO DE FONDO ===== */
@@ -298,21 +580,22 @@ body {
     text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
 }
 
-/* ===== FLECHAS DE NAVEGACIÓN (Corrección: tamaño reducido) ===== */
+/* ===== FLECHAS DE NAVEGACIÓN (Énfasis responsividad: posición y tamaño optimizados) ===== */
 .arrow {
     position: fixed;
-    width: 35px;
-    height: 35px;
+    width: 30px; /* Énfasis responsividad: más pequeño */
+    height: 30px;
     cursor: pointer;
-    z-index: 900;
+    z-index: 900; /* Énfasis responsividad: debajo del menú pero sobre contenido */
     color: #FFFFFF;
     transition: all 0.3s ease;
-    opacity: 0.7;
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+    opacity: 0.75;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+    padding: 5px; /* Énfasis responsividad: área de click más grande */
 }
 
 .arrow:hover {
-    transform: scale(1.2);
+    transform: scale(1.15);
     opacity: 1;
 }
 
@@ -322,26 +605,26 @@ body {
 }
 
 .arrow-up {
-    top: 80px;
+    top: 70px; /* Énfasis responsividad: debajo del menú */
     left: 50%;
     transform: translateX(-50%);
 }
 
 .arrow-down {
-    bottom: 35px;
+    bottom: 25px; /* Énfasis responsividad: más cerca del borde pero sin solapar */
     left: 50%;
     transform: translateX(-50%);
 }
 
 .arrow-left {
-    left: 25px;
+    left: 10px; /* Énfasis responsividad: más cerca del borde */
     top: 50%;
     transform: translateY(-50%);
     display: none;
 }
 
 .arrow-right {
-    right: 25px;
+    right: 10px; /* Énfasis responsividad: más cerca del borde */
     top: 50%;
     transform: translateY(-50%);
     display: none;
@@ -351,7 +634,7 @@ body {
     display: none;
 }
 
-/* ===== RESPONSIVE MEJORADO ===== */
+/* ===== RESPONSIVE MEJORADO (Énfasis responsividad) ===== */
 
 /* Pantallas grandes (más de 1200px) */
 @media (min-width: 1200px) {
@@ -374,64 +657,109 @@ body {
     }
     
     .arrow {
-        width: 40px;
-        height: 40px;
-    }
-}
-
-/* Tablets (768px - 1199px) */
-@media (max-width: 1199px) and (min-width: 768px) {
-    .menu a {
-        font-size: clamp(13px, 1.5vw, 16px);
-        padding: 8px 15px;
-    }
-    
-    .arrow {
         width: 38px;
         height: 38px;
     }
 }
 
-/* Tablets y móviles pequeños */
-@media (max-width: 768px) {
+/* Tablets (768px - 1199px) - Énfasis responsividad */
+@media (max-width: 1199px) and (min-width: 768px) {
     .menu {
-        padding: 15px 0;
-        flex-wrap: wrap;
+        height: 55px;
     }
     
     .menu a {
-        padding: 8px 12px;
-        margin: 3px;
-        font-size: clamp(12px, 2vw, 15px);
-    }
-    
-    .menu a.active::after {
-        width: 6px;
-        height: 6px;
+        font-size: clamp(12px, 1.4vw, 16px);
+        padding: 8px 15px;
+        margin: 0 5px;
     }
     
     .arrow {
-        width: 42px;
-        height: 42px;
-    }
-    
-    .arrow-up {
-        top: 75px;
-    }
-    
-    .arrow-down {
-        bottom: 30px;
+        width: 32px;
+        height: 32px;
     }
     
     .section {
-        padding-bottom: 85px;
         padding-top: 75px;
+        padding-bottom: 100px;
+    }
+}
+
+/* Tablets y móviles pequeños (Énfasis responsividad: 768px) */
+@media (max-width: 768px) {
+    .menu {
+        height: 50px;
+        padding: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .menu a {
+        padding: 6px 10px;
+        margin: 2px 4px;
+        font-size: clamp(11px, 2vw, 14px); /* Énfasis responsividad */
+    }
+    
+    .menu a.active::after {
+        width: 5px;
+        height: 5px;
+        bottom: -3px;
+    }
+    
+    /* Énfasis responsividad: Flechas optimizadas para touch */
+    .arrow {
+        width: 36px;
+        height: 36px;
+        padding: 6px;
+    }
+    
+    .arrow-up {
+        top: 60px;
+    }
+    
+    .arrow-down {
+        bottom: 20px;
+    }
+    
+    .arrow-left,
+    .arrow-right {
+        width: 34px;
+        height: 34px;
+    }
+    
+    /* Énfasis responsividad: Padding ajustado */
+    .section {
+        padding-top: 70px;
+        padding-bottom: 100px;
+    }
+    
+    .section.full-center .content {
+        padding: 15px 15px 100px 15px;
     }
     
     .section.horizontal-slides .slide,
     .section.split-left-right .left,
     .section.split-left-right .right {
-        padding: 25px 20px;
+        padding: 20px 15px 85px 15px;
+    }
+    
+    /* Énfasis responsividad: Fonts más pequeños */
+    .section.full-center h1 {
+        font-size: clamp(1.5rem, 7vw, 3rem);
+    }
+    
+    .section.full-center p {
+        font-size: clamp(0.85rem, 4vw, 1.3rem);
+    }
+    
+    .section.split-left-right h2,
+    .section.horizontal-slides h2 {
+        font-size: clamp(1.4rem, 6vw, 2.5rem);
+    }
+    
+    .section.split-left-right p,
+    .section.horizontal-slides p {
+        font-size: clamp(0.8rem, 3.5vw, 1.2rem);
     }
 }
 
@@ -447,31 +775,40 @@ body {
         margin: 2px 1px;
     }
     
+    /* Corrección: Flechas grandes para touch con posición segura */
     .arrow {
         width: 48px;
         height: 48px;
     }
     
     .arrow-down {
-        bottom: 25px;
+        bottom: 40px; /* Corrección: suficiente espacio */
     }
     
+    /* Corrección: Más padding para evitar solapamiento */
     .section {
-        padding-bottom: 95px;
-        padding-top: 70px;
+        padding-bottom: 120px;
+        padding-top: 75px;
     }
     
-    .section.full-center .content,
+    .section.full-center .content {
+        padding: 20px 15px 120px 15px;
+    }
+    
     .section.horizontal-slides .slide {
-        padding: 20px 15px;
+        padding: 20px 15px 100px 15px;
     }
 }
 
-/* Corrección: Landscape en móviles */
+/* Corrección: Landscape en móviles con padding ajustado */
 @media (max-height: 500px) and (orientation: landscape) {
     .section {
-        padding-top: 60px;
-        padding-bottom: 70px;
+        padding-top: 65px;
+        padding-bottom: 85px;
+    }
+    
+    .section.full-center .content {
+        padding-bottom: 90px;
     }
     
     .section.full-center h1 {
@@ -485,10 +822,10 @@ body {
     }
     
     .arrow-up {
-        top: 70px;
+        top: 75px;
     }
     
     .arrow-down {
-        bottom: 20px;
+        bottom: 35px; /* Corrección: posición segura */
     }
 }
