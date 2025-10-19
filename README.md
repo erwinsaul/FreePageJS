@@ -1,6 +1,6 @@
 # FreePage.js
 
-Una librería de navegación en pantalla completa.
+Una librería de navegación en pantalla completa con componentes reutilizables.
 
 ## 🚀 Características
 
@@ -14,6 +14,7 @@ Una librería de navegación en pantalla completa.
 - ✅ **Touch/Swipe Support** - Gestos táctiles nativos
 - ✅ **Menú Transparente** - Navegación con efecto "push"
 - ✅ **URL Hashes** - Navegación directa a secciones
+- ✅ **Componentes Reutilizables** - Persona, Evento, Lugar
 
 ## 📦 Instalación
 
@@ -31,88 +32,12 @@ Una librería de navegación en pantalla completa.
 ### Estructura HTML
 
 ```html
-<div id="fullscreen-container">
-    <div class="section full-center" id="seccion1" data-background-color="#F0F8FF">
-        <div class="content">
-            <h1>Título</h1>
-            <p>Contenido</p>
-        </div>
-    </div>
-</div>
+<div id="fullscreen-container" data-base-colors="#FF0000,#00FF00,#0000FF">
 ```
 
-### Tipos de Secciones
-
-#### 1. Full Center
-```html
-<div class="section full-center" id="seccion1" data-background-color="#F0F8FF">
-    <div class="content">
-        <h1>Título Centrado</h1>
-        <p>Texto centrado</p>
-        <img src="imagen.jpg" alt="Descripción">
-    </div>
-</div>
-```
-
-#### 2. Split Left/Right
-```html
-<div class="section split-left-right" id="seccion2" data-background-color="#E6E6FA">
-    <div class="left">
-        <h2>Contenido Izquierdo</h2>
-        <p>Texto aquí</p>
-    </div>
-    <div class="right">
-        <img src="imagen.jpg" alt="Descripción">
-    </div>
-</div>
-```
-
-#### 3. Horizontal Slides
-```html
-<div class="section horizontal-slides" id="seccion3" data-background-color="#ADD8E6">
-    <div class="slide">
-        <h2>Slide 1</h2>
-        <p>Contenido 1</p>
-    </div>
-    <div class="slide">
-        <h2>Slide 2</h2>
-        <p>Contenido 2</p>
-    </div>
-    <div class="slide">
-        <h2>Slide 3</h2>
-        <p>Contenido 3</p>
-    </div>
-</div>
-```
-
-#### 4. Video de Fondo
-```html
-<div class="section full-center" id="seccion4" data-video="https://www.youtube.com/embed/VIDEO_ID">
-    <div class="content">
-        <h1>Texto sobre Video</h1>
-        <p>El overlay oscuro se aplica automáticamente</p>
-    </div>
-</div>
-```
-
-## 🎨 Personalización
-
-### Colores
-
-Puedes definir colores de dos formas:
-
-1. **Por sección** (recomendado):
-```html
-<div class="section" data-background-color="#FF6B6B">
-```
-
-2. **Modificar el array de colores** en `FreePage.js`:
+Si no defines colores base, se usarán los colores predeterminados del archivo `FreePage.js`:
 ```javascript
-const COLORS = [
-    '#F0F8FF', '#E6E6FA', '#ADD8E6', '#FFB6C1',
-    '#FFFFFF', '#000000', '#B0C4DE', '#FFD1DC',
-    '#E0FFFF', '#F5F5DC'
-];
+let baseColors = [ '#FFFFFF', '#144D85', '#B33536'];
 ```
 
 ### Menú de Navegación
@@ -208,6 +133,7 @@ La librería incluye breakpoints automáticos:
   - Flechas de 40px
   - Split siempre vertical
   - Menú compacto
+  - Componentes en columna
 
 ## 🎭 Efectos Especiales
 
@@ -224,10 +150,18 @@ Al hacer click en el menú, las secciones se deslizan secuencialmente:
 
 El texto cambia de color automáticamente según el fondo:
 
-- **Fondos claros** (luminancia < 128): Texto oscuro
-- **Fondos oscuros** (luminancia ≥ 128): Texto claro
+- **Fondos claros** (luminancia < 0.5): Texto claro
+- **Fondos oscuros** (luminancia ≥ 0.5): Texto oscuro
 
-## 🐛 Solución de Problemas
+### Componentes Responsivos
+
+Los componentes se adaptan automáticamente:
+
+- **Desktop**: Layout original (horizontal/vertical según diseño)
+- **Mobile (<600px)**: Stack vertical automático
+- **Landscape móvil**: Layout optimizado para pantalla horizontal
+
+## 🛠 Solución de Problemas
 
 ### Las secciones no cambian
 - Verifica que las secciones tengan la clase `.section`
@@ -250,6 +184,137 @@ El texto cambia de color automáticamente según el fondo:
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
 
+### Componentes se solapan
+- Verifica los valores de `padding-bottom` en CSS
+- Ajusta el `max-width` de los componentes
+- Revisa media queries para tu dispositivo
+
+## 📚 Ejemplos Adicionales
+
+### Sección con Persona y texto
+```html
+<div class="section full-center" id="seccion1">
+    <div class="content">
+        <h1>Nuestro Equipo</h1>
+        <div class="persona">
+            <h3 class="nombre">Juan Pérez</h3>
+            <img src="https://via.placeholder.com/100x100" alt="Juan">
+            <p class="descripcion">CEO y Fundador</p>
+        </div>
+    </div>
+</div>
+```
+
+### Split con componentes
+```html
+<div class="section split-left-right" id="seccion2">
+    <div class="left">
+        <div class="persona persona-horizontal">
+            <img src="https://via.placeholder.com/100x100" alt="María">
+            <div>
+                <h3 class="nombre">María García</h3>
+                <p class="descripcion">Diseñadora UX</p>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="evento">
+            <h3 class="tema">Workshop 2025</h3>
+            <p class="detalle">Aprende diseño UX</p>
+            <p class="info">📍 Online • 📅 20 Abril</p>
+        </div>
+    </div>
+</div>
+```
+
+### Slides con múltiples componentes
+```html
+<div class="section horizontal-slides" id="seccion3">
+    <div class="slide">
+        <div class="lugar">
+            <img src="https://via.placeholder.com/150x100" alt="Oficina">
+            <div class="descripcion">
+                <h4>Nuestra Oficina</h4>
+                <p>Espacio moderno de trabajo</p>
+            </div>
+        </div>
+    </div>
+    <div class="slide">
+        <div class="persona">
+            <h3 class="nombre">Carlos López</h3>
+            <img src="https://via.placeholder.com/100x100" alt="Carlos">
+            <p class="descripcion">Developer</p>
+        </div>
+    </div>
+    <div class="slide">
+        <div class="evento">
+            <h3 class="tema">Lanzamiento</h3>
+            <p class="detalle">Nuevo producto</p>
+            <p class="info">📍 Madrid • 📅 1 Mayo</p>
+        </div>
+    </div>
+</div>
+```
+
+### Persona sobre video
+```html
+<div class="section full-center" id="seccion4" data-video="https://www.youtube.com/embed/VIDEO_ID">
+    <div class="content">
+        <div class="persona">
+            <h3 class="nombre">Ana Martínez</h3>
+            <img src="https://via.placeholder.com/100x100" alt="Ana">
+            <p class="descripcion">Content Creator</p>
+        </div>
+    </div>
+</div>
+```
+
+## 🎨 Personalización de Componentes
+
+### Modificar estilos de Persona
+
+```css
+.persona {
+    max-width: 350px; /* Cambiar ancho máximo */
+    padding: 25px; /* Ajustar padding */
+    border-radius: 12px; /* Cambiar border radius */
+}
+
+.persona img {
+    width: 120px; /* Cambiar tamaño de imagen */
+    height: 120px;
+    border: 4px solid rgba(255, 255, 255, 0.5); /* Ajustar borde */
+}
+```
+
+### Modificar estilos de Evento
+
+```css
+.evento {
+    max-width: 400px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.1); /* Cambiar fondo */
+}
+
+.evento .tema {
+    font-size: 1.8rem; /* Ajustar tamaño de título */
+}
+```
+
+### Modificar estilos de Lugar
+
+```css
+.lugar {
+    max-width: 600px;
+    padding: 25px;
+}
+
+.lugar img {
+    width: 50%; /* Cambiar proporción de imagen */
+    border-radius: 8px;
+}
+```
+
 ## 📄 Licencia
 
 Este código es de uso libre. Puedes modificarlo y distribuirlo sin restricciones.
@@ -261,34 +326,132 @@ Para agregar características o reportar bugs:
 2. Prueba en múltiples navegadores
 3. Documenta los cambios
 
-## 📚 Ejemplos Adicionales
-
-### Sección con múltiples imágenes
-```html
-<div class="section full-center" data-background-color="#FFF5E1">
-    <div class="content">
-        <h1>Galería</h1>
-        <img src="imagen1.jpg" alt="Imagen 1" style="max-width: 45%; margin: 10px;">
-        <img src="imagen2.jpg" alt="Imagen 2" style="max-width: 45%; margin: 10px;">
-    </div>
-</div>
-```
-
-### Sección con botones
-```html
-<div class="section full-center" data-background-color="#E8F4F8">
-    <div class="content">
-        <h1>Contacto</h1>
-        <button style="padding: 15px 30px; margin: 10px; cursor: pointer;">
-            Enviar Email
-        </button>
-        <button style="padding: 15px 30px; margin: 10px; cursor: pointer;">
-            WhatsApp
-        </button>
-    </div>
-</div>
-```
-
 ## 🎓 Créditos
-**Author**: ErwinSaul
-**Versión**: 1.0.0  
+**Author**: ErwinSaul  
+**Versión**: 1.0.0 con Componentes Reutilizables
+
+## 📋 Checklist de Integración
+
+- [x] HTML actualizado con componentes
+- [x] CSS con estilos de componentes
+- [x] Responsividad completa
+- [x] Compatibilidad con colores dinámicos
+- [x] Contraste automático
+- [x] Navegación cíclica funcional
+- [x] Videos de fondo soportados
+- [x] Touch/Swipe habilitado
+- [x] Menú transparente
+- [x] Flechas con contraste0000FF">
+    <div class="section full-center" id="seccion1">
+        <div class="content">
+            <h1>Título</h1>
+            <p>Contenido</p>
+        </div>
+    </div>
+</div>
+```
+
+### Tipos de Secciones
+
+#### 1. Full Center
+```html
+<div class="section full-center" id="seccion1">
+    <div class="content">
+        <h1>Título Centrado</h1>
+        <p>Texto centrado</p>
+        <img src="imagen.jpg" alt="Descripción">
+    </div>
+</div>
+```
+
+#### 2. Split Left/Right
+```html
+<div class="section split-left-right" id="seccion2">
+    <div class="left">
+        <h2>Contenido Izquierdo</h2>
+        <p>Texto aquí</p>
+    </div>
+    <div class="right">
+        <img src="imagen.jpg" alt="Descripción">
+    </div>
+</div>
+```
+
+#### 3. Horizontal Slides
+```html
+<div class="section horizontal-slides" id="seccion3">
+    <div class="slide">
+        <h2>Slide 1</h2>
+        <p>Contenido 1</p>
+    </div>
+    <div class="slide">
+        <h2>Slide 2</h2>
+        <p>Contenido 2</p>
+    </div>
+</div>
+```
+
+#### 4. Video de Fondo
+```html
+<div class="section full-center" id="seccion4" data-video="https://www.youtube.com/embed/VIDEO_ID">
+    <div class="content">
+        <h1>Texto sobre Video</h1>
+        <p>El overlay oscuro se aplica automáticamente</p>
+    </div>
+</div>
+```
+
+## 🎨 Componentes Reutilizables
+
+### Componente Persona (Básico)
+
+```html
+<div class="persona">
+    <h3 class="nombre">Juan Pérez</h3>
+    <img src="https://via.placeholder.com/100x100" alt="Juan Pérez">
+    <p class="descripcion">Desarrollador Full Stack</p>
+</div>
+```
+
+### Componente Persona (Horizontal)
+
+```html
+<div class="persona persona-horizontal">
+    <img src="https://via.placeholder.com/100x100" alt="María García">
+    <div>
+        <h3 class="nombre">María García</h3>
+        <p class="descripcion">Diseñadora UX/UI</p>
+    </div>
+</div>
+```
+
+### Componente Evento
+
+```html
+<div class="evento">
+    <h3 class="tema">Conferencia Web 2025</h3>
+    <p class="detalle">Descripción del evento aquí</p>
+    <p class="info">📍 Madrid • 📅 15 Marzo • ⏰ 10:00 AM</p>
+</div>
+```
+
+### Componente Lugar
+
+```html
+<div class="lugar">
+    <img src="https://via.placeholder.com/150x100" alt="Parque Central">
+    <div class="descripcion">
+        <h4>Parque Central</h4>
+        <p>Descripción del lugar aquí</p>
+    </div>
+</div>
+```
+
+## 🎨 Personalización
+
+### Colores Base
+
+Puedes definir colores base en el contenedor principal:
+
+```html
+<div id="fullscreen-container" data-base-colors="#FF0000,#00FF00,#

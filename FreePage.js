@@ -603,10 +603,18 @@
         });
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initFreePage);
-    } else {
-        initFreePage();
+    // Exportar funciones para uso externo
+    window.FreePage = {
+        init: initFreePage
+    };
+
+    // Auto-inicializar solo si no es una página LiveView
+    if (!document.querySelector('[data-phx-main]')) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFreePage);
+        } else {
+            initFreePage();
+        }
     }
 
 })();

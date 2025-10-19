@@ -304,7 +304,9 @@ body {
 .light-text,
 .light-text h1,
 .light-text h2,
-.light-text p {
+.light-text p,
+.light-text h3,
+.light-text h4 {
     color: #FFFFFF !important;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -312,9 +314,135 @@ body {
 .dark-text,
 .dark-text h1,
 .dark-text h2,
-.dark-text p {
+.dark-text p,
+.dark-text h3,
+.dark-text h4 {
     color: #000000 !important;
     text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+/* Componente Persona */
+.persona {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(221, 221, 221, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.persona .nombre {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.persona img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.persona .descripcion {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Persona Horizontal */
+.persona-horizontal {
+    flex-direction: row;
+    max-width: 400px;
+    text-align: left;
+}
+
+.persona-horizontal img {
+    margin-right: 20px;
+    margin-bottom: 0;
+}
+
+.persona-horizontal .nombre {
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.persona-horizontal .descripcion {
+    text-align: left;
+}
+
+/* Componente Evento */
+.evento {
+    border: 1px solid rgba(221, 221, 221, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.evento .tema {
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.evento .detalle {
+    flex: 1;
+    font-size: clamp(0.85rem, 3vw, 1rem);
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.evento .info {
+    font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Componente Lugar */
+.lugar {
+    display: flex;
+    border: 1px solid rgba(221, 221, 221, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.lugar img {
+    width: 40%;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.lugar .descripcion {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.lugar h4 {
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.lugar p {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+    line-height: 1.5;
 }
 
 .arrow {
@@ -493,10 +621,53 @@ body {
     }
 }
 
+/* Responsividad para componentes */
+@media (max-width: 600px) {
+    .persona,
+    .evento,
+    .lugar,
+    .persona-horizontal {
+        flex-direction: column;
+        max-width: 90%;
+    }
+    
+    .persona-horizontal img {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .persona-horizontal .nombre,
+    .persona-horizontal .descripcion {
+        text-align: center;
+    }
+    
+    .lugar img {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .persona .nombre,
+    .evento .tema,
+    .lugar h4 {
+        font-size: clamp(1rem, 4vw, 1.5rem);
+    }
+    
+    .persona .descripcion,
+    .evento .detalle,
+    .lugar p {
+        font-size: clamp(0.8rem, 3vw, 1rem);
+    }
+    
+    .evento .info {
+        font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+    }
+}
+
 @media (max-width: 600px) {
     :root {
         --menu-height: 48px;
-        --padding-bottom: 95px;
+        --padding-bottom: 100px;
     }
     
     .menu a {
@@ -725,5 +896,11 @@ body {
         width: 50%;
         word-break: break-word;
         overflow-wrap: break-word;
+    }
+    
+    .persona,
+    .evento,
+    .lugar {
+        max-width: 90%;
     }
 }

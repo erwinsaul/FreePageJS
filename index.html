@@ -14,73 +14,74 @@
         <a href="#seccion4" data-index="3">Video</a>
     </nav>
 
-    <div id="fullscreen-container">
+    <div id="fullscreen-container" data-base-colors="#FF0000,#00FF00,#0000FF">
         
-        <div class="section full-center" id="seccion1" data-background-color="#F0F8FF">
+        <!-- Sección 1: Componente Persona básico -->
+        <div class="section full-center" id="seccion1">
             <div class="content">
-                <h1>Bienvenidos a FreePage.js</h1>
-                <p>Una librería minimalista de navegación</p>
-                <p>en pantalla completa con colores vibrantes</p>
-                <p>y animaciones fluidas para experiencias</p>
-                <p>web modernas e impactantes</p>
+                <div class="persona">
+                    <h3 class="nombre">Juan Pérez</h3>
+                    <img src="https://via.placeholder.com/100x100" alt="Juan Pérez">
+                    <p class="descripcion">Desarrollador Full Stack con experiencia en JavaScript y Python</p>
+                </div>
             </div>
         </div>
 
-        <div class="section split-left-right" id="seccion2" data-background-color="#E6E6FA">
+        <!-- Sección 2: Persona horizontal (izquierda) + Evento (derecha) -->
+        <div class="section split-left-right" id="seccion2">
             <div class="left">
-                <h2>Navegación</h2>
-                <p>Intuitiva y</p>
-                <p>fluida con</p>
-                <p>transiciones</p>
-                <p>suaves y</p>
-                <p>elegantes</p>
+                <div class="persona persona-horizontal">
+                    <img src="https://via.placeholder.com/100x100" alt="María García">
+                    <div>
+                        <h3 class="nombre">María García</h3>
+                        <p class="descripcion">Diseñadora UX/UI especializada en experiencias digitales</p>
+                    </div>
+                </div>
             </div>
             <div class="right">
-                <h2>Diseño</h2>
-                <p>Responsive y</p>
-                <p>adaptable a</p>
-                <p>todos los</p>
-                <p>dispositivos</p>
-                <p>modernos</p>
+                <div class="evento">
+                    <h3 class="tema">Conferencia Web 2025</h3>
+                    <p class="detalle">Únete a la conferencia más importante sobre desarrollo web moderno</p>
+                    <p class="info">📍 Madrid • 📅 15 Marzo • ⏰ 10:00 AM</p>
+                </div>
             </div>
         </div>
 
-        <div class="section horizontal-slides" id="seccion3" data-background-color="#ADD8E6">
+        <!-- Sección 3: Horizontal slides con Lugar, Persona, Evento -->
+        <div class="section horizontal-slides" id="seccion3">
             <div class="slide">
-                <h2>Slide 1</h2>
-                <p>Colores Vibrantes</p>
-                <p>Los colores cambian</p>
-                <p>aleatoriamente en</p>
-                <p>cada transición</p>
-                <p>para una experiencia</p>
-                <p>visual dinámica</p>
+                <div class="lugar">
+                    <img src="https://via.placeholder.com/150x100" alt="Parque Central">
+                    <div class="descripcion">
+                        <h4>Parque Central</h4>
+                        <p>Espacio verde en el corazón de la ciudad, ideal para eventos al aire libre</p>
+                    </div>
+                </div>
             </div>
             <div class="slide">
-                <h2>Slide 2</h2>
-                <p>Navegación Cíclica</p>
-                <p>Al llegar al final</p>
-                <p>vuelves al principio</p>
-                <p>con animación de giro</p>
-                <p>Todo es fluido</p>
-                <p>e infinito</p>
+                <div class="persona">
+                    <h3 class="nombre">Carlos López</h3>
+                    <img src="https://via.placeholder.com/100x100" alt="Carlos López">
+                    <p class="descripcion">Product Manager con enfoque en innovación tecnológica</p>
+                </div>
             </div>
             <div class="slide">
-                <h2>Slide 3</h2>
-                <p>Sin Dependencias</p>
-                <p>HTML, CSS y</p>
-                <p>JavaScript puros</p>
-                <p>Sin frameworks ni</p>
-                <p>librerías externas</p>
-                <p>100% nativo</p>
+                <div class="evento">
+                    <h3 class="tema">Hackathon 2025</h3>
+                    <p class="detalle">24 horas de código, innovación y networking con los mejores desarrolladores</p>
+                    <p class="info">📍 Barcelona • 📅 20-21 Abril • ⏰ Todo el día</p>
+                </div>
             </div>
         </div>
 
+        <!-- Sección 4: Persona sobre video -->
         <div class="section full-center" id="seccion4" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
             <div class="content">
-                <h1>Video de Fondo</h1>
-                <p>Soporte para videos de YouTube</p>
-                <p>con overlay oscuro automático</p>
-                <p>y texto siempre legible</p>
+                <div class="persona">
+                    <h3 class="nombre">Ana Martínez</h3>
+                    <img src="https://via.placeholder.com/100x100" alt="Ana Martínez">
+                    <p class="descripcion">Content Creator y experta en marketing digital</p>
+                </div>
             </div>
         </div>
 
